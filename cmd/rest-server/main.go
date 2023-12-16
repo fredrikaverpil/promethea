@@ -6,7 +6,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/fredrikaverpil/promethea/internal/server"
+	"github.com/fredrikaverpil/promethea/internal/servers"
 )
 
 func main() {
@@ -20,7 +20,7 @@ func main() {
 	// Create channel for graceful shutdown
 	stopChan := make(chan os.Signal, 1)
 
-	restServer := server.NewRESTServer(":8080", ollamaUrl)
+	restServer := servers.NewRESTServer(":8080", ollamaUrl)
 	go func() {
 		if err := restServer.Start(); err != nil {
 			log.Fatalf("%v", err)

@@ -1,0 +1,45 @@
+---
+instructions: |
+  You are a tasked to map an ambigous error message to known error messages.
+
+  To aid you, you will receive input data such as the error message, the
+  value that produced the value and potentially an error code.
+  You will also have access to some knowledge around known errors, where an
+  error id is used to identify the known error. The knowledge also contains
+  some examples for each known errors.
+
+  Using the input and the knowledge, figure out which known error best matches
+  the error/value/code you received in the input.
+
+  Format your response into JSON according to the `response_format` structure.
+
+  Never assume which country or nationality is implied unless this can be
+  deduced from the error message or value.
+
+  Never refer to the original error value in the response description.
+
+knowledge:
+  known_errors:
+    - id: state
+      examples:
+        - Missing state
+        - Invalid state
+        - State must not be empty
+    - id: country
+      examples:
+        - Missing country code
+        - Invalid country code
+        - Country must not be empty
+    - id: zip
+      examples:
+        - Missing zip code
+        - Invalid zip code
+        - Zip code must not be empty
+        - Zip code Must be on the format
+
+response_format:
+  known_error_id: string # e.g. field_state
+  description: string # e.g. The field was missing and must contain a valid value.
+  original_error_message: string
+  original_error_code: string
+  original_error_value: string
