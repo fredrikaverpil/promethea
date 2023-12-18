@@ -1,0 +1,5 @@
+---
+input:
+  value: "Goteb"
+  error: Invalid country, you must enter a valid country
+  code: ""
