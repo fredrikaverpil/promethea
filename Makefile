@@ -15,6 +15,9 @@ app-restart:
 run-ollama:
 	ollama serve
 
+pull-mistral:
+	ollama pull mistral
+
 run-app:
 	go run cmd/rest-server/main.go
 

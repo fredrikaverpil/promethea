@@ -9,6 +9,7 @@ Run locally (fast):
 ```bash
 make run-ollama  # requires locally installed ollama (e.g. via brew)
 make run-app
+make pull-mistral  # pull the mistral LLM
 
 # example requests
 make error-missing-state
@@ -19,7 +20,7 @@ Run containerized (slow):
 
 ```bash
 make up  # run containers
-make pull  # pull image in the ollama container
+make pull  # pull the mistral LLM in the ollama container
 
 # example request
 make generate
