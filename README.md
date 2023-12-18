@@ -20,7 +20,7 @@ Example results:
 
 ```bash
 $ time make error-missing-state
-curl -X POST -H "Content-Type: application/json" -d '{"message":"Missing value for field \"state\"", "code":"412", "value":""}' http://127.0.0.1:8080/api/errors/guess_field
+curl -X POST -H "Content-Type: application/json" -d '{"filename":"errors.yaml", "message":"Missing value for field \"state\"", "code":"412", "value":""}' http://127.0.0.1:8080/api/errors/guess_field
 
 {
 "known_error_id": "state",
@@ -30,12 +30,12 @@ curl -X POST -H "Content-Type: application/json" -d '{"message":"Missing value f
 "original_error_value": ""
 }
 
-took 3s
+0.01s user 0.01s system 0% cpu 3.905 total
 ```
 
 ```bash
 $ time make error-invalid-country
-curl -X POST -H "Content-Type: application/json" -d '{"message":"not a valid country code", "code":"", "value":"GE"}' http://127.0.0.1:8080/api/errors/guess_field
+curl -X POST -H "Content-Type: application/json" -d '{"filename":"errors.yaml", "message":"not a valid country code", "code":"", "value":"GE"}' http://127.0.0.1:8080/api/errors/guess_field
 
 {
 "known_error_id": "country",
@@ -45,7 +45,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"message":"not a valid cou
 "original_error_value": "GE"
 }
 
-took 3s
+0.01s user 0.01s system 0% cpu 4.186 total
 ```
 
 ### Containerized (slow)

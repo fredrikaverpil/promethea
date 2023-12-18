@@ -25,10 +25,11 @@ type OllamaResponseGenerate struct {
 	Response string `json:"response"`
 }
 
-type RequestErrors struct {
-	Message string `json:"message"`
-	Code    string `json:"code"`
-	Value   string `json:"value"`
+type CustomInstructionsRequest struct {
+	Filename string `json:"filename"`
+	Message  string `json:"message"`
+	Code     string `json:"code"`
+	Value    string `json:"value"`
 }
 
 func (s *RESTServer) generate(w http.ResponseWriter, r *http.Request) {
@@ -64,14 +65,14 @@ func (s *RESTServer) pull(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *RESTServer) errorsGuessField(w http.ResponseWriter, r *http.Request) {
-	var req RequestErrors
+	var req CustomInstructionsRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
 	// Read YAML of instructions
-	instructionsFile := "instructions/errors.yaml"
+	instructionsFile := "instructions/" + req.Filename
 	instructionsPromptBytes, err := ioutil.ReadFile(instructionsFile)
 	if err != nil {
 		log.Println(err)
